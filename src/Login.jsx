@@ -10,7 +10,7 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const navigate = useNavigate();
 
-  const [email, setemail] = useState('r.rojo@gmail.com');
+  const [email, setemail] = useState('r.tsotsa@gmail.com');
   const [mdp, setmdp] = useState('1234');
 
   const handleLogin = async () => {
@@ -42,14 +42,9 @@ const Login = () => {
         telephone: userResponse.data.telephone,
         role: userResponse.data.role,
       };
-
-      if (user.role === 'ADMIN') {
-        sessionStorage.setItem('token', response.data.token);
-        navigate('/home');
-      }
       if ( user.role === 'USER') {
         sessionStorage.setItem('token', response.data.token);
-        navigate('/user');
+        navigate('/home');
       }
     } catch (error) {
       console.error('Erreur lors de la connexion :', error);

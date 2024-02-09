@@ -1,12 +1,15 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-scroll';
 import ParagraphText from '../paragraphTexts/ParagraphText';
 import SectionTitle from '../titles/SectionTitle';
 import TeamMemberItem from './TypeVoiture';
 import PrimaryButton from '../buttons/PrimaryButton';
+import { link } from '../../BackConfig';
+import axios from 'axios';
+
 // team member images
-import ImageCar3 from '../../assets/images/car3.jpg';
+import Login from '../../Login';
 
 const TeamSectionStyles = styled.div`
   padding: 10rem 0;
@@ -46,6 +49,29 @@ const TeamSectionStyles = styled.div`
 `;
 
 function TeamSection() {
+  const [allAnnonces, setAllAnnonces] = useState([]);
+  const [errors, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const token = sessionStorage.getItem('token');
+    const fetchAllAnnonces = async () => {
+      try {
+        const response = await axios.get(`${link}annonce/findAllAnnonceValide`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setAllAnnonces(response.data.allAnnonces);
+        setIsLoading(false);
+      } catch (error) {
+        setError('Erreur lors de la récupération des données.');
+        setIsLoading(false);
+      }
+    };
+    fetchAllAnnonces();
+  }, []);
+  if (sessionStorage.getItem('token') !== null) {
   return (
     <TeamSectionStyles id="annonces">
       <div className="container">
@@ -71,21 +97,21 @@ function TeamSection() {
           </div>
 
           <div className="team__members">
-            <TeamMemberItem
+            {/* <TeamMemberItem
+              img={allAnnonces[0].detailsAnnonce.urls[0]}
+              name={allAnnonces[0].marque}
+              title={allAnnonces[0].modeles}
+            /> */}
+            {/* <TeamMemberItem
+              img={allAnnonces[1].detailsAnnonce.urls[0]}
+              name={allAnnonces[1].marque}
+              title={allAnnonces[1].modeles}
+            /> */}
+            {/* <TeamMemberItem
               img={ImageCar3}
               name="Voiture 1"
               title="Nom"
-            />
-            <TeamMemberItem
-              img={ImageCar3}
-              name="Voiture 2"
-              title="Nom"
-            />
-            <TeamMemberItem
-              img={ImageCar3}
-              name="Voiture 1"
-              title="Nom"
-            />
+            /> */}
           </div>
 
         </div>
@@ -94,6 +120,9 @@ function TeamSection() {
     </TeamSectionStyles>
 
   );
+  }else{
+    return <Login></Login>
+  }
 }
 
 export default TeamSection;
