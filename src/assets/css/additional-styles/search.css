@@ -1,0 +1,44 @@
+/* SearchBar.css */
+.search-form {
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  .input-field {
+    position: relative;
+  }
+  
+  .input-field input[type="text"] {
+    padding: 10px 40px 10px 15px; /* Ajoutez du padding pour laisser de l'espace à l'icône */
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 16px;
+    width: 300px; /* Ajustez la largeur selon vos besoins */
+  }
+  
+  .input-field button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /* Assurez-vous d'ajuster les styles de l'icône SVG selon vos besoins */
+  .input-field button svg {
+    width: 24px;
+    height: 24px;
+    fill: var(--mediumSlateBlue);
+  }
+  
+  .input-field button:hover svg {
+    fill: #333; /* Changez la couleur au survol si vous le souhaitez */
+  }
+  
+  .input-field button:focus {
+    outline: none;
+
+  }
+  
