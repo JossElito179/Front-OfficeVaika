@@ -1,6 +1,6 @@
-import React,{useEffect,useState} from 'react';
+import {useEffect,useState} from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-scroll';
+import { Link } from 'react-router-dom';
 import ParagraphText from '../paragraphTexts/ParagraphText';
 import SectionTitle from '../titles/SectionTitle';
 import TeamMemberItem from './TypeVoiture';
@@ -63,6 +63,7 @@ function TeamSection() {
           },
         });
         setAllAnnonces(response.data.allAnnonces);
+        console.log(response.data.allAnnonces);
         setIsLoading(false);
       } catch (error) {
         setError('Erreur lors de la récupération des données.');
@@ -97,21 +98,44 @@ function TeamSection() {
           </div>
 
           <div className="team__members">
-            {/* <TeamMemberItem
-              img={allAnnonces[0].detailsAnnonce.urls[0]}
-              name={allAnnonces[0].marque}
-              title={allAnnonces[0].modeles}
-            /> */}
-            {/* <TeamMemberItem
-              img={allAnnonces[1].detailsAnnonce.urls[0]}
-              name={allAnnonces[1].marque}
-              title={allAnnonces[1].modeles}
-            /> */}
-            {/* <TeamMemberItem
-              img={ImageCar3}
-              name="Voiture 1"
-              title="Nom"
-            /> */}
+            {allAnnonces.map((annonce) =>(
+
+              <div className="parent" key={annonce.id_annonce}>
+              <TeamMemberItem key={annonce.id_annonce}
+                img={annonce.detailsAnnonce.urls[0]}
+                name={annonce.marque}
+                title={annonce.modeles}
+              />
+              <p>
+                <Link to={`/produits/${annonce.id_annonce}`}>
+              <button className='buttonDetail' key={annonce.id_annonce}>Detail</button>
+              </Link>
+              </p>
+              </div>
+            ))}
+            <style>
+              {
+                `
+                .buttonDetail {
+                  margin-top: 10px;
+                  background-color: #4dd74d;
+                  width: 150px;
+                  border: none;
+                  height: 40px;
+                  color: white;
+                  font-size: medium;
+                  border-radius: 5px;
+                  transition:0.5s;
+              }
+              
+              .buttonDetail:hover {
+                transition:0.5s;
+                color:black;
+                transform: scale(0.9);
+              }
+                `
+              }
+            </style>
           </div>
 
         </div>

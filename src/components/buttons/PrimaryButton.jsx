@@ -1,5 +1,6 @@
-import React from 'react';
+// import React from 'react';
 import styled from 'styled-components';
+// import { useHistory } from 'react-router-dom';
 
 const ButtonsStyles = styled.a`
   display: inline-block;
@@ -18,9 +19,15 @@ const ButtonsStyles = styled.a`
 `;
 
 function PrimaryButton({ children, buttonType, ...rest }) {
+  // const history = useHistory();
+
+  // const handleClick = () => {
+  //   history.push('/annonces');
+  // };
   return (
     <>
-      <ButtonsStyles as={buttonType} {...rest}>
+
+      <ButtonsStyles as={buttonType}{...rest}>
         {children}
       </ButtonsStyles>
     </>

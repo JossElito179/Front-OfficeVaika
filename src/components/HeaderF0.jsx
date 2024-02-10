@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { FiMenu, FiX } from 'react-icons/fi';
 import styled from 'styled-components';
-import { Link } from 'react-scroll';
+import { Link } from 'react-router-dom';
 import themeList from '../data/themeList';
 import Logo from './Logo';
 
@@ -161,7 +161,7 @@ export default function HeaderF0() {
     <HeaderStyles ref={headerRef}>
       <div className="container">
         <div className="navigation">
-          <Link to="home" smooth>
+          <Link to="#" smooth>
             <Logo />
           </Link>
           <div className="navMenu">
@@ -179,23 +179,23 @@ export default function HeaderF0() {
               )}
               <ul>
                 <li>
-                  <Link to="acceuil" smooth activeClass="active" spy>
+                  <Link to="/home" smooth activeClass="active" spy>
                     Acceuil
                   </Link>
                 </li>
                
                 <li>
-                  <Link to="about" smooth activeClass="active" spy>
+                  <Link to="#" smooth activeClass="active" spy>
                     A Propos
                   </Link>
                 </li>
                 <li>
-                  <Link to="annonces" smooth activeClass="active" spy>
+                  <Link to="#" smooth activeClass="active" spy>
                     Annonces
                   </Link>
                 </li>
                 <li>
-                  <Link to="message" smooth activeClass="active" spy>
+                  <Link to="#" smooth activeClass="active" spy>
                     Messages
                   </Link>
                 </li>

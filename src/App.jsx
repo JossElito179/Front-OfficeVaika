@@ -8,6 +8,8 @@ import {
 // import ThemeContext from './contexts/ThemeContext';
 import LandingPage from './pages/LandingPage';
 import Login from './Login';
+import LesAnnonces from './components/type/LesAnnonces';
+import Produits from './pages/Produits';
 // import VoirAnnonces from './pages/VoirAnnonces';
 // import ChatBox from './components/type/ChatBox';
 // import GlobalStyles from './styles/GlobalStyles';
@@ -30,6 +32,8 @@ function App() {
         <Route exact path="/" element={<Login />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/home" element={<LandingPage />} ></Route>
+        <Route exact path="/annonces" element={<LesAnnonces />} ></Route>
+        <Route path="/produits/:id" element={<Produits />} />
       </Routes>
     </>
   );

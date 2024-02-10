@@ -57,7 +57,7 @@ function TypeVoiture({ img, name, title, favoris, onButtonClick }) {
       </div>
       <p className="teamMember__subtitle">{title}</p>
       <p className="teamMember__name">{name}</p>
-      <button className="teamMember__button" onClick={onButtonClick}>{favoris}</button>
+      <button className="teamMember__button" onClick={onButtonClick}>Ajouter au favoris</button>
     
     </TypeVoitureStyles>
   );
